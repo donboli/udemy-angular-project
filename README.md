@@ -1,6 +1,6 @@
 # UdemyAngularProject
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.1.
+This project follows the [Angular 4 (formerly Angular 2) - The Complete Guide](https://www.udemy.com/the-complete-guide-to-angular-2/) Udemy course. 
 
 ## Development server
 
