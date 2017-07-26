@@ -1,7 +1,9 @@
 import {
   Component,
   OnInit,
-  Input
+  Input,
+  Output,
+  EventEmitter
 } from '@angular/core';
 
 import { Recipe } from '../../recipe.model';
@@ -13,10 +15,14 @@ import { Recipe } from '../../recipe.model';
 })
 export class RecipeItemComponent implements OnInit {
   @Input() recipe: Recipe;
+  @Output() clickRecipe = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onClick() {
+    this.clickRecipe.emit();
+  }
 }
