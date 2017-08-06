@@ -3,8 +3,7 @@
 <div class="container">
   <div class="row">
     <div [ngSwitch]="option" class="col-md-12">
-      <app-recipes *ngSwitchCase="'recipes'"></app-recipes>
-      <app-shopping-list *ngSwitchCase="'shopping'"></app-shopping-list>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
