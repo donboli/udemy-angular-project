@@ -25,6 +25,7 @@ export class ShoppingListEditComponent implements OnInit {
   }
 
   onSubmit(event: Event) {
+    event.preventDefault();
     const ingredient = new Ingredient(
       this.nameInput.nativeElement.value,
       this.amountInput.nativeElement.value
