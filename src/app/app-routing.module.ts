@@ -10,6 +10,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 
 const appRoutes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'recipes' },
   { path: 'shopping-list', component: ShoppingListComponent },
   { path: 'recipes', component: RecipesComponent, children: [
     { path: '', component: RecipeStartComponent },
