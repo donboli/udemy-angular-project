@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 
+import { AuthService } from './auth/auth.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,11 +11,12 @@ import * as firebase from 'firebase';
 export class AppComponent implements OnInit {
   private option = 'recipes';
 
+  constructor(
+    private authService: AuthService
+  ) {}
+
   ngOnInit() {
-    firebase.initializeApp({
-      apiKey: 'AIzaSyBi2OEV1-pwPjcP-xbuooM-Z15f4pUvzzQ',
-      authDomain: 'ng-recipe-book-8d434.firebaseapp.com'
-    });
+    this.authService.init();
   }
 
   onNavigate(event) {
