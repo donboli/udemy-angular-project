@@ -13,10 +13,6 @@ import { AuthRoutingModule } from './auth-routing.module';
   imports: [
     FormsModule,
     AuthRoutingModule
-  ],
-  exports: [
-    SigninComponent,
-    SignupComponent
   ]
 })
 export class AuthModule { }

@@ -15,10 +15,6 @@ import { ShoppingListRouting } from './shopping-list-routing.module';
     CommonModule,
     FormsModule,
     ShoppingListRouting
-  ],
-  exports: [
-    ShoppingListComponent,
-    ShoppingEditComponent
   ]
 })
 export class ShoppingListModule { }
