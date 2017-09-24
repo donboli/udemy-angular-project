@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { HomeComponent } from './home/home.component';
+
 const appRoutes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'recipes' }
+  { path: '', component: HomeComponent },
+  { path: 'recipes', loadChildren: './recipes/recipes.module#RecipesModule' }
 ];
 
 @NgModule({
