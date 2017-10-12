@@ -31,10 +31,12 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
         (index: number) => {
           this.editedItemIndex = index;
           this.editMode = true;
-          this.editedItem = this.shoppingListService.getIngredient(index);
-          this.shoppingListForm.setValue({
-            name: this.editedItem.name,
-            amount: this.editedItem.amount
+          this.store.select('shoppingList').select('ingredients').subscribe((ingredients) => {
+            const editedItem = ingredients[index];
+            this.shoppingListForm.setValue({
+              name: editedItem.name,
+              amount: editedItem.amount
+            });
           });
         }
       );
