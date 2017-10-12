@@ -28,6 +28,15 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
           ...action.payload
         ]
       };
+    case ShoppingListActions.UPDATE_INGREDIENT:
+      return {
+        ...state,
+        ingredients: [
+          ...state.ingredients.slice(0, action.payload.index),
+          action.payload.ingredient,
+          ...state.ingredients.slice(action.payload.index + 1),
+        ]
+      };
     default:
       return state;
   }

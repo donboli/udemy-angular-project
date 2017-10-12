@@ -27,7 +27,10 @@ export class ShoppingListService {
   }
 
   updateIngredient(index: number, newIngredient: Ingredient) {
-    this.ingredients[index] = newIngredient;
+    this.store.dispatch(new ShoppingListActions.UpdateIngredient({
+      index: index,
+      ingredient: newIngredient
+    }));
   }
 
   removeIngredient(index: number) {
