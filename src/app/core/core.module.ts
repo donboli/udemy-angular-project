@@ -7,7 +7,6 @@ import { AppRouting } from '../app-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { DataStorageService } from '../shared/data-storage.service';
 import { RecipeService } from '../recipes/recipe.service';
-import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { AuthService } from '../auth/auth.service';
 import { AuthGuard } from '../auth/auth-guard.service';
 
@@ -27,7 +26,6 @@ import { AuthGuard } from '../auth/auth-guard.service';
     AppRouting
   ],
   providers: [
-    ShoppingListService,
     RecipeService,
     DataStorageService,
     AuthService,
