@@ -13,14 +13,14 @@ import * as fromShoppingList from './store/shopping-list.reducers';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
-  shoppingListState: Observable<{ingredients: Ingredient[]}>;
+  shoppingListState: Observable<Ingredient[]>;
 
   constructor(
     private store: Store<fromShoppingList.AppState>
   ) { }
 
   ngOnInit() {
-    this.shoppingListState = this.store.select('shoppingList');
+    this.shoppingListState = this.store.select('shoppingList').select('ingredients');
   }
 
   onEditItem(index: number) {
