@@ -33,9 +33,17 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
         ...state,
         ingredients: [
           ...state.ingredients.slice(0, action.payload.index),
-          action.payload.ingredient,
-          ...state.ingredients.slice(action.payload.index + 1),
+          { ...action.payload.ingredient },
+          ...state.ingredients.slice(action.payload.index + 1)
         ]
+      };
+    case ShoppingListActions.DELETE_INGREDIENT:
+      const newIngredients = [...state.ingredients];
+      newIngredients.splice(action.payload, 1);
+
+      return {
+        ...state,
+        ingredients: newIngredients
       };
     default:
       return state;
