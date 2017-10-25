@@ -10,7 +10,7 @@
         <li routerLinkActive="active"><a [routerLink]="['shopping-list']">Shopping List</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <div *ngIf="authService.isAuthenticated(); then authenticated; else notAuthenticated"></div>
+        <div *ngIf="(authState | async).authenticated; then authenticated; else notAuthenticated"></div>
         <ng-template #notAuthenticated>
           <li><a routerLink="/signup">Register</a></li>
           <li><a routerLink="/signin">Login</a></li>
