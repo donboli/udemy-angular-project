@@ -30,6 +30,7 @@ export class DataStorageService {
 
   getRecipes() {
     this.store.select('auth')
+      .take(1)
       .switchMap((authState: fromAuth.State) => {
         return this.http.get('https://ng-recipe-book-8d434.firebaseio.com/recipes.json?auth=' + authState.token)
         .map(
