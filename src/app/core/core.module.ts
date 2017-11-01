@@ -7,7 +7,6 @@ import { AppRouting } from '../app-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { DataStorageService } from '../shared/data-storage.service';
 import { RecipeService } from '../recipes/recipe.service';
-import { AuthService } from '../auth/auth.service';
 import { AuthGuard } from '../auth/auth-guard.service';
 
 @NgModule({
@@ -28,7 +27,6 @@ import { AuthGuard } from '../auth/auth-guard.service';
   providers: [
     RecipeService,
     DataStorageService,
-    AuthService,
     AuthGuard
   ],
 })

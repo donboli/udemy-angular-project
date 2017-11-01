@@ -10,7 +10,6 @@ import { Store } from '@ngrx/store';
 
 import * as fromApp from '../store/app.reducers';
 import * as fromAuth from './store/auth.reducers';
-import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
