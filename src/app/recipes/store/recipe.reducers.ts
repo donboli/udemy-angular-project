@@ -56,7 +56,7 @@ export function recipeReducer(state = initialState, action: RecipeActions.Recipe
         recipes: [
           ...state.recipes.slice(0, action.payload.index),
           action.payload.updatedRecipe,
-          ...state.recipes.slice(action.payload.index)
+          ...state.recipes.slice(action.payload.index + 1)
         ]
       };
     case RecipeActions.DELETE_RECIPE:
