@@ -1,8 +1,9 @@
 import { Recipe } from '../recipe.model';
 import { Ingredient } from '../../shared/ingredient.model';
 import * as RecipeActions from './recipe.actions';
+import * as fromApp from '../../store/app.reducers';
 
-export interface FeatureState {
+export interface FeatureState extends fromApp.AppState {
   recipes: State;
 }
 
@@ -63,7 +64,7 @@ export function recipeReducer(state = initialState, action: RecipeActions.Recipe
         ...state,
         recipes: [
           ...state.recipes.slice(0, action.payload),
-          ...state.recipes.slice(action.payload)
+          ...state.recipes.slice(action.payload + 1)
         ]
       };
     default:
