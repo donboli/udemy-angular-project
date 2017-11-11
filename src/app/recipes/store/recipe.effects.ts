@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import * as RecipeActions from './recipe.actions';
 import { Recipe } from '../recipe.model';
 import * as fromAuth from '../../auth/store/auth.reducers';
-import * as fromApp from '../../store/app.reducers';
+import * as fromRecipe from './recipe.reducers';
 
 @Injectable()
 export class RecipeEffects {
@@ -35,9 +35,22 @@ export class RecipeEffects {
       }
     );
 
+  @Effect({dispatch: false})
+    recipeStore = this.actions
+      .ofType(RecipeActions.STORE_RECIPES)
+      .combineLatest(
+        this.store.select('auth'),
+        this.store.select('recipes')
+      )
+      .switchMap(([action, authState, recipesState]) => {
+        return this.http.put('https://ng-recipe-book-8d434.firebaseio.com/recipes.json?auth='
+        + authState.token, recipesState.recipes);
+      });
+
+
   constructor(
     private actions: Actions,
     private http: Http,
-    private store: Store<fromApp.AppState>
+    private store: Store<fromRecipe.FeatureState>
   ) { }
 }
