@@ -31,25 +31,6 @@ export class RecipeService {
     return this.recipes.slice();
   }
 
-  getRecipe(index: number) {
-    return this.recipes[index];
-  }
-
-  addRecipe(recipe: Recipe) {
-    this.recipes.push(recipe);
-    this.recipesChanged.next(this.getRecipes());
-  }
-
-  updateRecipe(index: number, newRecipe: Recipe) {
-    this.recipes[index] = newRecipe;
-    this.recipesChanged.next(this.getRecipes());
-  }
-
-  removeRecipe(index: number) {
-    this.recipes.splice(index, 1);
-    this.recipesChanged.next(this.getRecipes());
-  }
-
   setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
     this.recipesChanged.next(this.getRecipes());
