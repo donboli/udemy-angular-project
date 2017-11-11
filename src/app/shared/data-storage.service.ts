@@ -27,29 +27,4 @@ export class DataStorageService {
         + authState.token, this.recipeService.getRecipes());
       });
   }
-
-  getRecipes() {
-    this.store.select('auth')
-      .take(1)
-      .switchMap((authState: fromAuth.State) => {
-        return this.http.get('https://ng-recipe-book-8d434.firebaseio.com/recipes.json?auth=' + authState.token)
-        .map(
-          (response: Response) => {
-            const recipes: Recipe[] = response.json();
-            for (const recipe of recipes) {
-              if (!recipe['ingredients']) {
-                recipe['ingredients'] = [];
-              }
-            }
-            return recipes;
-          }
-        );
-      })
-      .subscribe(
-        (recipes: Recipe[]) => {
-          this.recipeService.setRecipes(recipes);
-        },
-        err => console.log(err)
-      );
-  }
 }

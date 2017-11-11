@@ -45,7 +45,7 @@ export class AuthEffects {
   @Effect()
   authSignin = this.actions
     .ofType(AuthActions.TRY_SIGNIN)
-    .map((action: AuthActions.TrySignup) => {
+    .map((action: AuthActions.TrySignin) => {
       return action.payload;
     })
     .switchMap((authData: {username: string, password: string}) => {

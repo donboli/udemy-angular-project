@@ -30,7 +30,10 @@ export class AuthModule {
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.store.dispatch(new AuthActions.Signin());
+        user.getToken().then((token) => {
+          this.store.dispatch(new AuthActions.SetToken(token));
+          this.store.dispatch(new AuthActions.Signin());
+        });
       } else {
         this.store.dispatch(new AuthActions.Logout());
       }
