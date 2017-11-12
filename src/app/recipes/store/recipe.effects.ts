@@ -14,9 +14,8 @@ export class RecipeEffects {
   recipeFetch = this.actions
     .ofType(RecipeActions.FETCH_RECIPES)
     .switchMap((action: RecipeActions.FetchRecipes) => {
-      return this.store.select('auth');
+      return this.store.select('auth').take(1);
     })
-    .take(1)
     .switchMap((authState: fromAuth.State) => {
       return this.http.get('https://ng-recipe-book-8d434.firebaseio.com/recipes.json?auth=' + authState.token);
     })
