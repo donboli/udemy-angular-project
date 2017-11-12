@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { AppRouting } from '../app-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { AuthGuard } from '../auth/auth-guard.service';
+import { AuthInterceptor } from '../shared/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { AuthGuard } from '../auth/auth-guard.service';
     AppRouting
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
 })
 export class CoreModule { }

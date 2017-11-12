@@ -1,6 +1,6 @@
 import { Effect, Actions } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 
 import 'rxjs/add/operator/combineLatest';
@@ -18,15 +18,11 @@ export class RecipeEffects {
   @Effect()
   recipeFetch = this.actions
     .ofType(RecipeActions.FETCH_RECIPES)
-    .switchMap((action: RecipeActions.FetchRecipes) => {
-      return this.store.select('auth').take(1);
-    })
-    .switchMap((authState: fromAuth.State) => {
-      return this.http.get('https://ng-recipe-book-8d434.firebaseio.com/recipes.json?auth=' + authState.token);
+    .switchMap(() => {
+      return this.httpClient.get<Recipe[]>('https://ng-recipe-book-8d434.firebaseio.com/recipes.json');
     })
     .map(
-      (response: Response) => {
-        const recipes: Recipe[] = response.json();
+      (recipes) => {
         for (const recipe of recipes) {
           if (!recipe['ingredients']) {
             recipe['ingredients'] = [];
@@ -47,14 +43,13 @@ export class RecipeEffects {
         this.store.select('recipes')
       )
       .switchMap(([action, authState, recipesState]) => {
-        return this.http.put('https://ng-recipe-book-8d434.firebaseio.com/recipes.json?auth='
-        + authState.token, recipesState.recipes);
+        return this.httpClient.put('https://ng-recipe-book-8d434.firebaseio.com/recipes.json', recipesState.recipes);
       });
 
 
   constructor(
     private actions: Actions,
-    private http: Http,
+    private httpClient: HttpClient,
     private store: Store<fromRecipe.FeatureState>
   ) { }
 }
