@@ -3,6 +3,11 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Store } from '@ngrx/store';
 
+import 'rxjs/add/operator/combineLatest';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/take';
+
 import * as RecipeActions from './recipe.actions';
 import { Recipe } from '../recipe.model';
 import * as fromAuth from '../../auth/store/auth.reducers';

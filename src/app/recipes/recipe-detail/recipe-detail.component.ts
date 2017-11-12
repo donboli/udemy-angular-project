@@ -1,17 +1,11 @@
-import {
-  Component,
-  OnInit,
-  Input
-} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/take';
 
-import { Recipe } from '../recipe.model';
-import { Ingredient } from '../../shared/ingredient.model';
 import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
-import * as fromApp from '../../store/app.reducers';
 import * as fromRecipe from '../store/recipe.reducers';
 import * as RecipeActions from '../store/recipe.actions';
 

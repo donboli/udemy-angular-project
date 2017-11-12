@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 
 import { Store } from '@ngrx/store';
+import 'rxjs/add/operator/take';
 
 import * as fromRecipe from '../store/recipe.reducers';
 import * as RecipeActions from '../store/recipe.actions';
@@ -64,6 +65,10 @@ export class RecipeEditComponent implements OnInit {
 
   onDeleteIngredient(index: number) {
     (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
+  }
+
+  ingredientCtrls(form: FormGroup) {
+    return (<FormGroup>form.get('ingredients')).controls;
   }
 
   private initForm() {
